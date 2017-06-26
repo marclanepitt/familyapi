@@ -68,9 +68,13 @@ INSTALLED_APPS = [
     # 3rd party apps
     'debug_toolbar',
     'django_extensions',
+    'rest_framework',
+    'django_filters',
+    'crispy_forms',
 
     # Project apps
     'common.apps.CommonConfig',
+    'users.apps.UsersConfig',
 
 ]
 
@@ -270,9 +274,24 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 TEST_RUNNER = 'redgreenunittest.django.runner.RedGreenDiscoverRunner'
 
+# Rest framework
 
-# REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append('rest_framework.authentication.BasicAuthentication')
+API_VERSIONS = ['v1']
+DEFAULT_VERSION = 'v1'
 
+# TODO Throttling?
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'DEFAULT_VERSION': DEFAULT_VERSION,
+    'ALLOWED_VERSIONS': API_VERSIONS,
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+}
 
 try:
     # Running in testing mode
