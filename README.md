@@ -5,8 +5,7 @@
     * `settings/`: Module for all settings (`settings.py` imports the necessary testing, local settings files)
         * During local development settings in `settings.py` are overridden by the values in `local_settings.py`. This file is a symlink to `local_settings.py.dev` and is .gitignored. See Dev setup instructions below.
         * `testing_settings.py` are used during testing.
-    * `urls.py`: The root url conf. You probably don't need to touch this.
-    * `v1.py`: All urls for `v1` of the api. You should really only need to add one url rule per app. Each app should have its own `urls.py`. In the future you will need to have `v2.py`, and include it in `urls.py`.
+    * `urls.py`: The root url conf. Add new urls for `v1` of the api to `v1_urls`.
 * `.coveragerc`: Config file for coverage package. This package reports how much of your code is actually being tested by the tests you write.
 * `.flake8`: Config file for flake8, which checks python code quality and lints it. (Tells you about unneeded code, etc.)
 `.pre-commit-config.yaml`: Config file for pre-commit, which runs everytime you commit code. This runs flake8 and some other useful tools.

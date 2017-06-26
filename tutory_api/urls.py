@@ -17,9 +17,13 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib import admin
 
+v1_urls = [
+    url(r'^users/', include('users.v1.urls', namespace='users')),
+]
+
 api_urls = [
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^v1/', include('tutory_api.v1', namespace='v1')),
+    url(r'^v1/', include(v1_urls, namespace='v1')),
 ]
 
 urlpatterns = [
