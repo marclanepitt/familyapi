@@ -29,7 +29,7 @@ Master: [![Build Status](https://travis-ci.com/marclanepitt/tutory_api.svg?token
 * `virtualenv venv -p python3`
 * `source venv/bin/activate` or the equivalent on windows
 * `pip install -r requirements.txt`
-* `cd tutory_api/settings' , 'cp local_settings.py.dev local_settings.py'
+* `cd tutory_api/settings` , `cp local_settings.py.dev local_settings.py`
 * `pre-commit install`
 * `python manage.py migrate`
 * `python manage.py run_seeds`
