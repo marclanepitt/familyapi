@@ -1,3 +1,7 @@
+Dev: [![Build Status](https://travis-ci.com/marclanepitt/tutory_api.svg?token=QxTgpKzhU3nxqVJMzhCC&branch=dev)](https://travis-ci.com/marclanepitt/tutory_api)
+
+Master: [![Build Status](https://travis-ci.com/marclanepitt/tutory_api.svg?token=QxTgpKzhU3nxqVJMzhCC&branch=master)](https://travis-ci.com/marclanepitt/tutory_api)
+
 ## General
 * All apps should go in the `apps/` folder.
 * The `common` app is used to for general management commands, any other general things.
