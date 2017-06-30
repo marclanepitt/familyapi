@@ -7,8 +7,9 @@ class Command(BaseCommand):
     help = 'Seeds the project'
 
     def handle(self, *args, **options):
-        print('Seeding universities...')
-        call_command('seed_universities')
+        print('Seeding universities and majors...')
+        call_command('seed_majors')
+        call_command('seed_institutions')
 
         try:
             site = Site.objects.get(name='example.com')

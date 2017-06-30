@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'crispy_forms',
+    'knox',
 
     # Project apps
     'common.apps.CommonConfig',
@@ -282,8 +283,9 @@ DEFAULT_VERSION = 'v1'
 # TODO Throttling?
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
@@ -291,6 +293,10 @@ REST_FRAMEWORK = {
     'ALLOWED_VERSIONS': API_VERSIONS,
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+}
+
+REST_KNOX = {
+    'USER_SERIALIZER': 'users.v1.serializers.UserDetailSerializer',
 }
 
 try:

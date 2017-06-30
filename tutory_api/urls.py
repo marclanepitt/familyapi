@@ -22,7 +22,8 @@ v1_urls = [
 ]
 
 api_urls = [
-    url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^auth/', include('knox.urls')),
+    url(r'^rest-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^v1/', include(v1_urls, namespace='v1')),
 ]
 

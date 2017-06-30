@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from tutory_api.permissions import IsSelf
+from knox.auth import TokenAuthentication
 
 from . import serializers
 
@@ -16,6 +17,7 @@ class UserDetailView(generics.RetrieveAPIView):
 
     queryset = User.objects.all()
     permission_classes = (IsAuthenticated, IsSelf)
+    authentication_classes = (TokenAuthentication, )
     serializer_class = serializers.UserDetailSerializer
 
     def get_object(self):
