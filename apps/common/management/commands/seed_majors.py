@@ -10,8 +10,7 @@ class Command(BaseCommand):
 		with open(majors_file) as csvfile:
 			reader = csv.DictReader(csvfile)
 			for row in reader:
-				mid = row['FOD1P']
 				major = row['Major']
 				category=row['Major_Category']
-				new_major = Major.objects.get_or_create(major=major,mid=mid,category=category)
-			print("Done!")
+				new_major = Major.objects.get_or_create(major=major,category=category)
+			print("Majors Done!")

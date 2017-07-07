@@ -72,6 +72,10 @@ INSTALLED_APPS = [
     'django_filters',
     'crispy_forms',
     'knox',
+    'allauth',
+    'allauth.account',
+    'rest_auth',
+    'rest_auth.registration',
 
     # Project apps
     'common.apps.CommonConfig',
@@ -283,9 +287,9 @@ DEFAULT_VERSION = 'v1'
 # TODO Throttling?
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'knox.auth.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
@@ -298,6 +302,24 @@ REST_FRAMEWORK = {
 REST_KNOX = {
     'USER_SERIALIZER': 'users.v1.serializers.UserDetailSerializer',
 }
+
+# Django rest auth
+LOGOUT_ON_PASSWORD_CHANGE = False
+OLD_PASSWORD_FIELD_ENABLED = True
+REST_SESSION_LOGIN  = False
+REST_AUTH_TOKEN_MODEL = 'knox.models.AuthToken'
+REST_AUTH_TOKEN_CREATOR = 'users.v1.token_generator.generate'
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'users.v1.serializers.RegistrationSerializer'
+}
+
+# Django all auth
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USER_DISPLAY = lambda user: user.email
+ACCOUNT_USERNAME_REQUIRED = False
+
 
 try:
     # Running in testing mode

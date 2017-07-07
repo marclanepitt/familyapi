@@ -19,11 +19,15 @@ from django.contrib import admin
 
 v1_urls = [
     url(r'^users/', include('users.v1.urls', namespace='users')),
+    url(r'^', include('common.v1.urls')),
 ]
 
 api_urls = [
     url(r'^auth/', include('knox.urls')),
-    url(r'^rest-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^auth/', include('rest_auth.urls')),
+    url(r'^auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^allauth/', include('allauth.urls')),
+    url(r'^drf-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^v1/', include(v1_urls, namespace='v1')),
 ]
 

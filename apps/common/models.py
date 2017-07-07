@@ -12,7 +12,6 @@ class Institution(models.Model):
 
 class Major(models.Model):
     major = models.CharField(max_length=30)
-    mid = models.CharField(max_length=30)
     category = models.CharField(max_length=30)
     def __str__(self):
         return self.major

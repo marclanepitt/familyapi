@@ -26,8 +26,9 @@ class UserProfile(models.Model):
     )
 
     institution = models.ForeignKey(Institution)
-    major = models.ForeignKey(Major)
+    major = models.ManyToManyField(Major)
     user = models.OneToOneField(User)
+    pro_pic = models.ImageField(blank = True)
 
     def __str__(self):
         return '{} {}'.format(self.user.first_name, self.user.last_name)

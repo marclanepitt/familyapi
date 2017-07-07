@@ -17,10 +17,19 @@ class UserDetailView(generics.RetrieveAPIView):
 
     queryset = User.objects.all()
     permission_classes = (IsAuthenticated, IsSelf)
-    authentication_classes = (TokenAuthentication, )
+    #authentication_classes = (TokenAuthentication, )
     serializer_class = serializers.UserDetailSerializer
 
     def get_object(self):
         if self.kwargs.get('pk', None) == 'me':
             return get_object_or_404(User, pk=self.request.user.id)
         return super().get_object()
+
+
+class UserProfileCreateView(generics.CreateAPIView):
+    serializer_class = serializers.UserProfileSerializer
+    permission_classes = (IsAuthenticated, )
+    authentication_classes = (TokenAuthentication, )
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
