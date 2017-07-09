@@ -7,7 +7,6 @@ from rest_auth.registration.serializers import RegisterSerializer
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    # major = MajorSerializer()
 
     class Meta:
         model = UserProfile
@@ -38,6 +37,7 @@ class RegistrationSerializer(RegisterSerializer):
 
     def get_cleaned_data(self):
         data = super().get_cleaned_data()
+        print(data)
         data['username'] = data.get('email')
         data['first_name'] = self.validated_data.get('first_name')
         data['last_name'] = self.validated_data.get('last_name')

@@ -76,6 +76,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth',
     'rest_auth.registration',
+    'corsheaders',
+
 
     # Project apps
     'common.apps.CommonConfig',
@@ -84,6 +86,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -319,7 +322,6 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USER_DISPLAY = lambda user: user.email
 ACCOUNT_USERNAME_REQUIRED = False
-
 
 try:
     # Running in testing mode
