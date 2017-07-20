@@ -3,4 +3,4 @@ from .models import UserProfile
 
 class UserAdmin(admin.ModelAdmin):
     pass
-admin.site.register(UserProfile,UserAdmin)
+admin.site.register(UserProfile)

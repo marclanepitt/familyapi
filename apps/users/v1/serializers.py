@@ -38,6 +38,7 @@ class RegistrationSerializer(RegisterSerializer):
     def get_cleaned_data(self):
         data = super().get_cleaned_data()
         print(data)
+        print(self.validated_data)
         data['username'] = data.get('email')
         data['first_name'] = self.validated_data.get('first_name')
         data['last_name'] = self.validated_data.get('last_name')
