@@ -20,6 +20,7 @@ from django.contrib import admin
 v1_urls = [
     url(r'^users/', include('users.v1.urls', namespace='users')),
     url(r'^', include('common.v1.urls')),
+    url(r'^t-requests/', include('tutorrequests.v1.urls', namespace='tutorrequests'))
 ]
 
 api_urls = [

@@ -82,6 +82,7 @@ INSTALLED_APPS = [
     # Project apps
     'common.apps.CommonConfig',
     'users.apps.UsersConfig',
+    'tutorrequests.apps.TutorRequestsConfig',
 
 ]
 
