@@ -6,6 +6,11 @@
 
 coverage/
 
+.DS_Store
+apps/.DS_Store
+apps/users/migrations/0002_auto_20170730_2231.py
+tutory_api/.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
