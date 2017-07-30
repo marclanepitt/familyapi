@@ -35,10 +35,15 @@ class RegistrationSerializer(RegisterSerializer):
         super().__init__(*args, **kwargs)
         self.fields.pop('username')
 
+    def custom_signup(self, request, user):
+        user_profile_data = self.validated_data.get('user_profile', {})
+        user_profile_data['user'] = user
+        majors = user_profile_data.pop('major', [])
+        user_profile = UserProfile.objects.create(**user_profile_data)
+        user_profile.major.add(*majors)
+
     def get_cleaned_data(self):
         data = super().get_cleaned_data()
-        print(data)
-        print(self.validated_data)
         data['username'] = data.get('email')
         data['first_name'] = self.validated_data.get('first_name')
         data['last_name'] = self.validated_data.get('last_name')
