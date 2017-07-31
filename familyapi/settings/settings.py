@@ -81,6 +81,9 @@ INSTALLED_APPS = [
     # Project apps
     'common.apps.CommonConfig',
     'users.apps.UsersConfig',
+    'chores.apps.ChoresConfig',
+    'events.apps.EventsConfig',
+    'finances.apps.FinancesConfig',
 
 ]
 
