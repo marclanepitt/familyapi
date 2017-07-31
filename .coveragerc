@@ -15,7 +15,7 @@ omit =
     */apps.py
     */tests/*
     */factories/*
-    tutory_api/utils/*
+    familyapi/utils/*
     */management/*
     */test_*.py
     venv/*

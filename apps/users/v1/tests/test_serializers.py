@@ -17,8 +17,8 @@ class UserDetailSerializerTests(APITestCase):
             'first_name': 'John',
             'last_name': 'Doe',
             'full_name': 'John Doe',
-            'email': 'user0@tutory.com',
-            'username': 'user0@tutory.com',
+            'email': 'user0@family.com',
+            'username': 'user0@family.com',
             'last_login': None,
             'is_active': True,
             'date_joined': self.date_joined.isoformat()[:-6] + 'Z'

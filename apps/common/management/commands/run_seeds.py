@@ -7,14 +7,10 @@ class Command(BaseCommand):
     help = 'Seeds the project'
 
     def handle(self, *args, **options):
-        print('Seeding universities and majors...')
-        call_command('seed_majors')
-        call_command('seed_institutions')
-
         try:
             site = Site.objects.get(name='example.com')
-            site.domain = 'tutory.com'
-            site.name = 'tutory.com'
+            site.domain = 'family.com'
+            site.name = 'family.com'
             print('Updating default site...')
             site.save()
         except Site.DoesNotExist:

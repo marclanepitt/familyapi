@@ -1,11 +1,11 @@
-Dev: [![Build Status](https://travis-ci.com/marclanepitt/tutory_api.svg?token=QxTgpKzhU3nxqVJMzhCC&branch=dev)](https://travis-ci.com/marclanepitt/tutory_api)
+Dev: [![Build Status](https://travis-ci.com/marclanepitt/familyapi.svg?token=QxTgpKzhU3nxqVJMzhCC&branch=dev)](https://travis-ci.com/marclanepitt/familyapi)
 
-Master: [![Build Status](https://travis-ci.com/marclanepitt/tutory_api.svg?token=QxTgpKzhU3nxqVJMzhCC&branch=master)](https://travis-ci.com/marclanepitt/tutory_api)
+Master: [![Build Status](https://travis-ci.com/marclanepitt/familyapi.svg?token=QxTgpKzhU3nxqVJMzhCC&branch=master)](https://travis-ci.com/marclanepitt/familyapi)
 
 ## General
 * All apps should go in the `apps/` folder.
 * The `common` app is used to for general management commands, any other general things.
-* The inner `tutory_api/` folder holds:
+* The inner `familyapi/` folder holds:
     * `settings/`: Module for all settings (`settings.py` imports the necessary testing, local settings files)
         * During local development settings in `settings.py` are overridden by the values in `local_settings.py`. This file is a symlink to `local_settings.py.dev` and is .gitignored. See Dev setup instructions below.
         * `testing_settings.py` are used during testing.
@@ -29,7 +29,7 @@ Master: [![Build Status](https://travis-ci.com/marclanepitt/tutory_api.svg?token
 * `virtualenv venv -p python3`
 * `source venv/bin/activate` or the equivalent on windows
 * `pip install -r requirements.txt`
-* `cd tutory_api/settings` , `cp local_settings.py.dev local_settings.py`
+* `cd familyapi/settings` , `cp local_settings.py.dev local_settings.py`
 * `pre-commit install`
 * `python manage.py migrate`
 * `python manage.py run_seeds`

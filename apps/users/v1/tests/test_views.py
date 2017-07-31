@@ -9,7 +9,7 @@ class UserDetailViewTests(APITestCase):
         return reverse('v1:users:detail', kwargs=kwargs)
 
     def setUp(self):
-        self.user = UserFactory(email='user@tutory.com', password='myweakpassword')
+        self.user = UserFactory(email='user@family.com', password='myweakpassword')
         self.client.force_login(self.user)
 
     def test_requires_auth(self):
@@ -25,7 +25,7 @@ class UserDetailViewTests(APITestCase):
         response = self.client.get(self._format_url(pk=self.user.pk))
         data = response.data
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(data.get('email'), 'user@tutory.com')
+        self.assertEqual(data.get('email'), 'user@family.com')
         self.assertEqual(data.get('id'), 1)
 
     def test_get_me(self):
@@ -36,7 +36,7 @@ class UserDetailViewTests(APITestCase):
         response = self.client.get(self._format_url(pk='me'))
         data = response.data
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(data.get('email'), 'user@tutory.com')
+        self.assertEqual(data.get('email'), 'user@family.com')
         self.assertEqual(data.get('id'), 1)
 
     def test_is_self(self):

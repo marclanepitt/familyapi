@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from tutory_api.permissions import IsSelf
+from familyapi.permissions import IsSelf
 from knox.auth import TokenAuthentication
 
 from . import serializers

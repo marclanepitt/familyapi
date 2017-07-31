@@ -11,7 +11,7 @@ install:
 
 env:
   global:
-    - DJANGO_SETTINGS_MODULE="tutory_api.settings.settings"
+    - DJANGO_SETTINGS_MODULE="familyapi.settings.settings"
 
 script:
   - bash run_tests.sh

@@ -1,4 +1,4 @@
-"""tutory_api URL Configuration
+"""familyapi URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -23,6 +23,7 @@ v1_urls = [
 ]
 
 api_urls = [
+    url(r'^', include('django.contrib.auth.urls')),
     url(r'^auth/', include('knox.urls')),
     url(r'^auth/', include('rest_auth.urls')),
     url(r'^auth/registration/', include('rest_auth.registration.urls')),

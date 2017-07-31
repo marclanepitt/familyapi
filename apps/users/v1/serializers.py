@@ -10,7 +10,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = "__all__"
+        fields = ("date_of_birth", "pro_pic", "status")
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
