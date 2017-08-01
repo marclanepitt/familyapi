@@ -1,13 +1,11 @@
 from django.contrib.auth.models import User
-
-from users.models import UserProfile
+from rest_auth.registration.serializers import RegisterSerializer
 from rest_framework import serializers
 
-from rest_auth.registration.serializers import RegisterSerializer
+from users.models import UserProfile
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = UserProfile
         fields = ("date_of_birth", "pro_pic", "status")
@@ -38,7 +36,7 @@ class RegistrationSerializer(RegisterSerializer):
     def custom_signup(self, request, user):
         user_profile_data = self.validated_data.get('user_profile', {})
         user_profile_data['user'] = user
-        user_profile = UserProfile.objects.create(**user_profile_data)
+        UserProfile.objects.create(**user_profile_data)
 
     def get_cleaned_data(self):
         data = super().get_cleaned_data()

@@ -2,13 +2,13 @@ from django.db import models
 
 
 class Family(models.Model):
-    name = models.CharField(max_length = 50)
-    pro_pic = models.ImageField(blank = True, null = True)
+    name = models.CharField(max_length=50)
+    pro_pic = models.ImageField(blank=True, null=True)
 
 
 class Pet(models.Model):
-    name = models.CharField(max_length = 50)
-    pro_pic = models.ImageField(blank = True, null = True)
+    name = models.CharField(max_length=50)
+    pro_pic = models.ImageField(blank=True, null=True)
     DOG = "DO"
     CAT = "CA"
 
@@ -23,5 +23,5 @@ class Pet(models.Model):
         default=DOG,
     )
 
-    date_of_birth = models.DateField(auto_now = False, blank = True, null = True)
-    family = models.ForeignKey(Family, on_delete = models.CASCADE)
+    date_of_birth = models.DateField(auto_now=False, blank=True, null=True)
+    family = models.ForeignKey(Family, on_delete=models.CASCADE)

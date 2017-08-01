@@ -1,13 +1,14 @@
+from django.contrib.auth.models import User
 from django.db import models
 
-from django.contrib.auth.models import User
 from common.models import Family
 
+
 class UserProfile(models.Model):
-    date_of_birth = models.DateField(auto_now = False, default = "1997-07-28")
+    date_of_birth = models.DateField(auto_now=False, default="1997-07-28")
     user = models.OneToOneField(User)
-    pro_pic = models.ImageField(blank = True)
-    family = models.ForeignKey(Family, on_delete = models.CASCADE, blank=True, null= True)
+    pro_pic = models.ImageField(blank=True)
+    family = models.ForeignKey(Family, on_delete=models.CASCADE, blank=True, null=True)
 
     MOTHER = 'M'
     FATHER = 'F'
@@ -45,4 +46,3 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return '{} {}'.format(self.user.first_name, self.user.last_name)
-

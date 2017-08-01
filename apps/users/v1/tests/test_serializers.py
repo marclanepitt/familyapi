@@ -21,7 +21,8 @@ class UserDetailSerializerTests(APITestCase):
             'username': 'user0@family.com',
             'last_login': None,
             'is_active': True,
-            'date_joined': self.date_joined.isoformat()[:-6] + 'Z'
+            'date_joined': self.date_joined.isoformat()[:-6] + 'Z',
+            'userprofile': None
         }
         serializer = self.serializer_cls(self.user)
         self.assertDictEqual(serializer.data, expected)

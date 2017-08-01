@@ -15,7 +15,7 @@ class UserDetailViewTests(APITestCase):
     def test_requires_auth(self):
         self.client.logout()
         response = self.client.get(self._format_url(pk=self.user.pk))
-        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 401)
         self.assertEqual(response.data, {'detail': 'Authentication credentials were not provided.'})
 
     def test_get(self):

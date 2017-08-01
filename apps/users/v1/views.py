@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
+from knox.auth import TokenAuthentication
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from familyapi.permissions import IsSelf
-from knox.auth import TokenAuthentication
 
+from familyapi.permissions import IsSelf
 from . import serializers
 
 
@@ -17,7 +17,6 @@ class UserDetailView(generics.RetrieveAPIView):
 
     queryset = User.objects.all()
     permission_classes = (IsAuthenticated, IsSelf)
-    #authentication_classes = (TokenAuthentication, )
     serializer_class = serializers.UserDetailSerializer
 
     def get_object(self):
@@ -28,8 +27,8 @@ class UserDetailView(generics.RetrieveAPIView):
 
 class UserProfileCreateView(generics.CreateAPIView):
     serializer_class = serializers.UserProfileSerializer
-    permission_classes = (IsAuthenticated, )
-    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

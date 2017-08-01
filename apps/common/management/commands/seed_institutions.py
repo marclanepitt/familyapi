@@ -1,7 +1,9 @@
-from django.core.management.base import BaseCommand
-from common.models import Institution
 import csv
 import os
+
+from django.core.management.base import BaseCommand
+
+from common.models import Institution
 
 
 class Command(BaseCommand):
@@ -18,6 +20,7 @@ class Command(BaseCommand):
                 website = row['Institution_Web_Address']
                 campus_name = row['Campus_Name']
                 campus_zip = row['Campus_Zip']
-                Institution.objects.get_or_create(institution_id = institution_id, name = name,zip_code = zip_code, website=website,
-                    campus_name = campus_name,campus_zip = campus_zip)
+                Institution.objects.get_or_create(institution_id=institution_id, name=name, zip_code=zip_code,
+                                                  website=website,
+                                                  campus_name=campus_name, campus_zip=campus_zip)
             print("Done!")
