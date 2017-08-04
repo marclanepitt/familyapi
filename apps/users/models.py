@@ -5,6 +5,7 @@ from common.models import Family
 
 
 class UserProfile(models.Model):
+    #allowance?
     date_of_birth = models.DateField(auto_now=False, default="1997-07-28")
     user = models.OneToOneField(User)
     pro_pic = models.ImageField(blank=True)
