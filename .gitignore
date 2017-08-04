@@ -10,6 +10,11 @@ coverage/
 apps/.DS_Store
 apps/users/migrations/*
 apps/common/migrations/*
+apps/chores/migrations/*
+apps/events/migrations/*
+apps/finances/migrations/*
+
+
 familyapi/.DS_Store
 
 # Byte-compiled / optimized / DLL files

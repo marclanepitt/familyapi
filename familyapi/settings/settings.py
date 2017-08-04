@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth',
     'rest_auth.registration',
+    'corsheaders',
 
 
     # Project apps
@@ -88,6 +89,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.security.SecurityMiddleware',

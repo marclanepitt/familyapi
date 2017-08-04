@@ -19,6 +19,7 @@ from django.contrib import admin
 
 v1_urls = [
     url(r'^users/', include('users.v1.urls', namespace='users')),
+    url(r'^finances/', include('finances.v1.urls', namespace='finances')),
     url(r'^', include('common.v1.urls')),
 ]
 

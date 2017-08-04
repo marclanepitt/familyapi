@@ -3,12 +3,13 @@ from rest_auth.registration.serializers import RegisterSerializer
 from rest_framework import serializers
 
 from users.models import UserProfile
-
+from common.v1.serializers import FamilySerializer
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    family = FamilySerializer(read_only=True)
     class Meta:
         model = UserProfile
-        fields = ("date_of_birth", "pro_pic", "status")
+        fields = ("date_of_birth", "pro_pic", "status", "family")
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
