@@ -5,7 +5,7 @@ from common.models import Family,Pet
 class FamilySerializer(serializers.ModelSerializer):
     class Meta:
         model = Family
-        fields = ("id", "name", "pro_pic")
+        fields = ("name", "pro_pic")
 
 class PetSerializer(serializers.ModelSerializer):
     class Meta:

@@ -3,11 +3,11 @@ from rest_framework import generics
 from .serializers import ChargeSerializer
 
 
-class ChargeListView(generics.ListAPIView):
+class ChargeListCreateView(generics.ListCreateAPIView):
     serializer_class = ChargeSerializer
     def get_queryset(self):
         family = self.kwargs['family']
         return Charge.objects.filter(family=family)
 
-class ChargeCreateView(generics.CreateAPIView):
-    serializer_class = ChargeSerializer
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)

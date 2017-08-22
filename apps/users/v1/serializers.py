@@ -3,13 +3,13 @@ from rest_auth.registration.serializers import RegisterSerializer
 from rest_framework import serializers
 
 from users.models import UserProfile
+from common.models import Family
 from common.v1.serializers import FamilySerializer
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    family = FamilySerializer(read_only=True)
     class Meta:
         model = UserProfile
-        fields = ("date_of_birth", "pro_pic", "status", "family")
+        fields = ("first_name","password","date_of_birth", "pro_pic", "status", "family")
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
@@ -28,16 +28,16 @@ class UserDetailSerializer(serializers.ModelSerializer):
 class RegistrationSerializer(RegisterSerializer):
     first_name = serializers.CharField()
     last_name = serializers.CharField()
-    user_profile = UserProfileSerializer()
+    family = FamilySerializer()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields.pop('username')
 
     def custom_signup(self, request, user):
-        user_profile_data = self.validated_data.get('user_profile', {})
-        user_profile_data['user'] = user
-        UserProfile.objects.create(**user_profile_data)
+        family_data = self.validated_data.get('family', {})
+        family_data['user'] = user
+        Family.objects.create(**family_data)
 
     def get_cleaned_data(self):
         data = super().get_cleaned_data()

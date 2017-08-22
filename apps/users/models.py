@@ -1,13 +1,12 @@
-from django.contrib.auth.models import User
 from django.db import models
-
+from django import forms
 from common.models import Family
 
 
 class UserProfile(models.Model):
-    #allowance?
-    date_of_birth = models.DateField(auto_now=False, default="1997-07-28")
-    user = models.OneToOneField(User)
+    password = models.CharField(max_length=4)
+    first_name = models.CharField(max_length=30)
+    date_of_birth = models.DateField(auto_now=False)
     pro_pic = models.ImageField(blank=True)
     family = models.ForeignKey(Family, on_delete=models.CASCADE, blank=True, null=True)
 
@@ -46,4 +45,5 @@ class UserProfile(models.Model):
     )
 
     def __str__(self):
-        return '{} {}'.format(self.user.first_name, self.user.last_name)
+        return '{} {}'.format(self.first_name, self.family.name)
+

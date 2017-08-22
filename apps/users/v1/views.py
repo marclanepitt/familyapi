@@ -28,7 +28,6 @@ class UserDetailView(generics.RetrieveAPIView):
 class UserProfileCreateView(generics.CreateAPIView):
     serializer_class = serializers.UserProfileSerializer
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

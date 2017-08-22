@@ -4,4 +4,4 @@ from ..models import Charge
 class ChargeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Charge
-        fields = ("__all__")
+        fields = ("created_by","description","charge_type", "amount", "location")
