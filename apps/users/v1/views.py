@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from knox.auth import TokenAuthentication
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from rest_auth.registration.views import RegisterView
 
 from familyapi.permissions import IsSelf
 from . import serializers
@@ -31,3 +32,9 @@ class UserProfileCreateView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+class RegistrationView(RegisterView):
+    def get_response_data(self, user):
+        data = super().get_response_data(user)
+        data.update({"family":user.family.id,"admin":"SU"})
+        return data

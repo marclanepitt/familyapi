@@ -8,7 +8,23 @@ class UserProfile(models.Model):
     first_name = models.CharField(max_length=30)
     date_of_birth = models.DateField(auto_now=False)
     pro_pic = models.ImageField(blank=True)
-    family = models.ForeignKey(Family, on_delete=models.CASCADE, blank=True, null=True)
+    family = models.ForeignKey(Family, on_delete=models.CASCADE, blank=True, null=True,related_name="users")
+
+    SUPER = 'SU'
+    ADMIN = 'AD'
+    DEFAULT = "DE"
+
+    admin_choices = (
+        (SUPER, "Super"),
+        (ADMIN, "Admin"),
+        (DEFAULT,"Default")
+    )
+
+    admin = models.CharField(
+        max_length=2,
+        choices=admin_choices,
+        default=DEFAULT,
+    )
 
     MOTHER = 'M'
     FATHER = 'F'

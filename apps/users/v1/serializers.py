@@ -6,23 +6,24 @@ from users.models import UserProfile
 from common.models import Family
 from common.v1.serializers import FamilySerializer
 
+
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ("first_name","password","date_of_birth", "pro_pic", "status", "family")
+        fields = ("first_name","password","date_of_birth", "pro_pic", "status", "family", "admin")
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
-    userprofile = UserProfileSerializer()
+    family = FamilySerializer()
 
     def get_full_name(self, obj):
         return '{} {}'.format(obj.first_name, obj.last_name)
 
     class Meta:
         model = User
-        fields = ('id', 'first_name', 'last_name', 'full_name', 'email', 'username', 'last_login', 'is_active',
-                  'date_joined', 'userprofile')
+        fields = ('family','id', 'first_name', 'last_name', 'full_name', 'email', 'username', 'last_login', 'is_active',
+                  'date_joined',)
 
 
 class RegistrationSerializer(RegisterSerializer):
