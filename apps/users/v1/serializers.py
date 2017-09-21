@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from rest_auth.registration.serializers import RegisterSerializer
-from rest_framework import serializers
+from rest_framework import serializers,exceptions
+from django.shortcuts import get_object_or_404
+
 
 from users.models import UserProfile
 from common.models import Family
@@ -11,6 +13,20 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = ("first_name","password","date_of_birth", "pro_pic", "status", "family", "admin")
+
+class UserProfileLoginSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    password = serializers.CharField(max_length=4)
+
+    def validate(self, attrs):
+        id = attrs.get('id')
+        password = attrs.get('password')
+        user = get_object_or_404(UserProfile,pk=id)
+        if(password == user.password):
+            attrs['user'] = user
+            return attrs
+        else:
+            raise exceptions.APIException("Wrong password")
 
 
 class UserDetailSerializer(serializers.ModelSerializer):

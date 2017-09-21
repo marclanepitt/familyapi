@@ -4,10 +4,12 @@ from knox.auth import TokenAuthentication
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_auth.registration.views import RegisterView
+from rest_framework.response import Response
+from rest_framework import status
 
 from familyapi.permissions import IsSelf
 from . import serializers
-
+from ..models import UserProfile
 
 class UserDetailView(generics.RetrieveAPIView):
     """
@@ -33,8 +35,30 @@ class UserProfileCreateView(generics.CreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+class UserProfileListView(generics.ListAPIView):
+    serializer_class = serializers.UserProfileSerializer
+    permission_classes = (IsAuthenticated,)
+    def get_queryset(self):
+        return UserProfile.objects.filter(pk=self.kwargs['id'])
+
 class RegistrationView(RegisterView):
     def get_response_data(self, user):
         data = super().get_response_data(user)
         data.update({"family":user.family.id,"admin":"SU"})
         return data
+
+class UserProfileLoginView(generics.GenericAPIView):
+    serializer_class = serializers.UserProfileLoginSerializer
+
+    def get_response(self):
+
+        data = {
+                'status': 1,
+                }
+
+        return Response(data, status=status.HTTP_200_OK)
+
+    def post(self, request, *args, **kwargs):
+        self.serializer = self.get_serializer(data=self.request.data)
+        self.serializer.is_valid(raise_exception=True)
+        return self.get_response()
