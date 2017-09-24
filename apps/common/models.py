@@ -38,3 +38,6 @@ class Group(models.Model):
     families = models.ManyToManyField(Family)
     def __str__(self):
         return self.name
+
+class Post(models.Model):
+    date = models.DateTimeField(auto_now_add=True)

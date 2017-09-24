@@ -1,5 +1,5 @@
 from django.db import models
-from common.models import Family
+from common.models import Family, Post
 from users.models import UserProfile
 
 
@@ -27,6 +27,7 @@ class Charge(models.Model):
 
     amount = models.DecimalField(max_digits=7, decimal_places=2)
     location = models.CharField(max_length=50)
+    #post = models.OneToOneField(Post)
 
     def __str__(self):
         return '{} spent ${} at {}'.format(self.created_by, self.amount, self.location)

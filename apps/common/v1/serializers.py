@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from common.models import Family,Pet
+from common.models import Family,Pet, Post
 from users.models import UserProfile
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -16,3 +16,8 @@ class PetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pet
         fields = ("name", "pro_pic", "pet_choice","date_of_birth","family")
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ("date",)
