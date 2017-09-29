@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Family(models.Model):
     name = models.CharField(max_length=50)
     pro_pic = models.ImageField(blank=True, null=True)
+    cover_pic = models.ImageField(blank=True,null=True)
     user = models.OneToOneField(User)
     def __str__(self):
         return self.name
@@ -40,4 +41,5 @@ class Group(models.Model):
         return self.name
 
 class Post(models.Model):
+    family = models.ForeignKey(Family)
     date = models.DateTimeField(auto_now_add=True)

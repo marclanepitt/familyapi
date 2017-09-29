@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from common.models import Family,Pet, Post
+from finances.models import Charge
+from finances.v1.serializers import ChargeSerializer
 from users.models import UserProfile
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -10,7 +12,7 @@ class FamilySerializer(serializers.ModelSerializer):
     users = UserProfileSerializer(many=True)
     class Meta:
         model = Family
-        fields = ("id","name", "pro_pic","users")
+        fields = ("id","name", "pro_pic","cover_pic","users")
 
 class PetSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,6 +20,7 @@ class PetSerializer(serializers.ModelSerializer):
         fields = ("name", "pro_pic", "pet_choice","date_of_birth","family")
 
 class PostSerializer(serializers.ModelSerializer):
+    charge = ChargeSerializer()
     class Meta:
         model = Post
-        fields = ("date",)
+        fields = ("charge","date","family")

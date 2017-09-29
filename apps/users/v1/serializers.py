@@ -12,7 +12,7 @@ from common.v1.serializers import FamilySerializer
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ("first_name","password","date_of_birth", "pro_pic", "status", "family", "admin")
+        fields = ("id","first_name","password","date_of_birth", "pro_pic", "status", "family", "admin")
 
 class UserProfileLoginSerializer(serializers.Serializer):
     id = serializers.IntegerField()
