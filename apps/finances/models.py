@@ -6,6 +6,7 @@ from users.models import UserProfile
 class Charge(models.Model):
     family = models.ForeignKey(Family, on_delete=models.CASCADE)
     created_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
     description = models.CharField(max_length=300)
 
     FOOD = 'FO'

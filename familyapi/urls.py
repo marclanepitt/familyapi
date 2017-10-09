@@ -23,6 +23,7 @@ from users.v1.views import RegistrationView
 v1_urls = [
     url(r'^users/', include('users.v1.urls', namespace='users')),
     url(r'^finances/', include('finances.v1.urls', namespace='finances')),
+    url(r'^chores/', include('chores.v1.urls', namespace='chores')),
     url(r'^family/', include('common.v1.urls', namespace='family')),
     url(r'^', include('common.v1.urls')),
 ]

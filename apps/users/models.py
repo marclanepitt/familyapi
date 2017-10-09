@@ -9,6 +9,21 @@ class UserProfile(models.Model):
     date_of_birth = models.DateField(auto_now=False)
     pro_pic = models.ImageField(blank=True)
     family = models.ForeignKey(Family, on_delete=models.CASCADE, blank=True, null=True,related_name="users")
+    budget_amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+    DAILY ="Day"
+    WEEKLY= 'Week'
+    MONTHLY="Month"
+    YEARLY = "Year"
+
+    interval_choices = (
+        (DAILY, "Daily"),
+        (WEEKLY,"Weekly"),
+        (MONTHLY,"Monthly"),
+        (YEARLY,"Yearly")
+    )
+
+    budget_interval = models.CharField(max_length=5,choices=interval_choices,default=WEEKLY)
 
     SUPER = 'SU'
     ADMIN = 'AD'

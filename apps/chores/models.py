@@ -1,10 +1,49 @@
 from django.db import models
 from users.models import UserProfile
-from common.models import Pet
+from common.models import Pet,Family
 
 
 class Chore(models.Model):
-    name = models.CharField(max_length=20)
-    days = models.CharField(max_length=15)
-    participants = models.ManyToManyField(UserProfile)
-    pets = models.ManyToManyField(Pet)
+    family = models.ForeignKey(Family)
+    created_by = models.ForeignKey(UserProfile)
+    name = models.CharField(max_length=100)
+
+    days = models.CharField(max_length=10)
+    time = models.TimeField()
+    is_completed = models.BooleanField(default=False)
+    is_redeemed =models.BooleanField(default=False)
+    num_points = models.IntegerField()
+
+    WEEKLY = 'WE'
+    BIWEEKLY = "BW"
+    TRIWEEKLY = "TW"
+    MONTHLY = "MO"
+    NEVER = "N"
+
+    interval_choices = (
+        (NEVER,"Never"),
+        (WEEKLY, "Weekly"),
+        (BIWEEKLY, "Bi Weekly"),
+        (MONTHLY, "Monthly"),
+        (TRIWEEKLY, "Tri Weekly")
+    )
+
+    repeat = models.CharField(max_length=2, choices=interval_choices, default=WEEKLY)
+    participants = models.ManyToManyField(UserProfile, related_name="participants",blank=True)
+    pets = models.ManyToManyField(Pet,blank=True)
+
+    def __str__(self):
+        return '{}'.format(self.name)
+
+class ChoreReward(models.Model):
+    created_by = models.ForeignKey(UserProfile, related_name='created_by')
+    rewarded_to = models.ForeignKey(UserProfile, related_name="rewarded_to")
+    num_points = models.IntegerField()
+    reward = models.CharField(max_length=100)
+
+
+#parents will set chore point thresholds with a reward at each
+#this will be on userprofile model, when threshold is reached, points can be redeemed
+#should add is_completed field to this model
+#eventually add in link to chore reward or image
+#chore open to anyone vs chore to specific person

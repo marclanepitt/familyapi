@@ -7,13 +7,13 @@ from users.models import UserProfile
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ("id","first_name","password","date_of_birth", "pro_pic", "status", "family", "admin")
+        fields = ("id","first_name","password","date_of_birth", "pro_pic", "status", "family", "admin","budget_amount","budget_interval")
 
 class ChargeSerializer(serializers.ModelSerializer):
     created_by = UserProfileSerializer()
     class Meta:
         model = Charge
-        fields = ("family","id","created_by","description","charge_type", "amount", "location")
+        fields = ("family","id","created_by","description","charge_type", "amount", "location","date")
 
 class ChargeCreateSerializer(serializers.ModelSerializer):
     class Meta:
