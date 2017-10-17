@@ -47,3 +47,4 @@ class ChoreReward(models.Model):
 #should add is_completed field to this model
 #eventually add in link to chore reward or image
 #chore open to anyone vs chore to specific person
+#what happens when chores are past due?

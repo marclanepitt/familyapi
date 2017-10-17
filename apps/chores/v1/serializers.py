@@ -15,4 +15,4 @@ class ChoreListSerializer(serializers.ModelSerializer):
     pets = PetSerializer(many=True,read_only=True)
     class Meta:
         model= Chore
-        fields=("family","created_by","name","days","time","is_completed","num_points","repeat","participants","pets")
+        fields=("id","family","created_by","name","days","time","is_completed","num_points","repeat","participants","pets")
