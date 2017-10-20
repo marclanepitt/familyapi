@@ -13,7 +13,9 @@ class Chore(models.Model):
     time_end = models.TimeField()
     date_start = models.DateField()
     is_completed = models.BooleanField(default=False)
+    completed_date = models.DateTimeField(blank=True,null=True)
     is_redeemed =models.BooleanField(default=False)
+    redeemed_date = models.DateTimeField(blank=True,null=True)
     num_points = models.IntegerField()
 
     WEEKLY = 'WE'

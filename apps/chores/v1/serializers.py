@@ -17,7 +17,7 @@ class ChoreListSerializer(serializers.ModelSerializer):
     pets = PetSerializer(many=True,read_only=True)
     class Meta:
         model= Chore
-        fields=("id","family","created_by","name","days","time_start","time_end","is_completed","num_points","repeat","participants","pets")
+        fields=("id","family","created_by","name","days","date_start","time_start","time_end","is_completed","num_points","repeat","participants","pets","completed_date","redeemed_date")
 
 class ChoreUpdateSerializer(serializers.ModelSerializer):
     participants = serializers.PrimaryKeyRelatedField(
@@ -26,4 +26,4 @@ class ChoreUpdateSerializer(serializers.ModelSerializer):
         many=True, queryset=Pet.objects.all())
     class Meta:
         model= Chore
-        fields=("id","family","created_by","name","days","time_start","time_end","is_completed","num_points","repeat","participants","pets")
+        fields=("id","family","created_by","name","days","time_start","time_end","is_completed","num_points","repeat","participants","pets","completed_date","redeemed_date")
