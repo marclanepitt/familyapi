@@ -9,7 +9,9 @@ class Chore(models.Model):
     name = models.CharField(max_length=100)
 
     days = models.CharField(max_length=10)
-    time = models.TimeField()
+    time_start = models.TimeField()
+    time_end = models.TimeField()
+    date_start = models.DateField()
     is_completed = models.BooleanField(default=False)
     is_redeemed =models.BooleanField(default=False)
     num_points = models.IntegerField()
@@ -31,6 +33,7 @@ class Chore(models.Model):
     repeat = models.CharField(max_length=2, choices=interval_choices, default=WEEKLY)
     participants = models.ManyToManyField(UserProfile, related_name="participants",blank=True)
     pets = models.ManyToManyField(Pet,blank=True)
+    is_latest = models.BooleanField(default=False)
 
     def __str__(self):
         return '{}'.format(self.name)

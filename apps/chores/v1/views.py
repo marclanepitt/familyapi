@@ -2,12 +2,9 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from knox.auth import TokenAuthentication
 from rest_framework import generics,mixins
-from rest_framework.permissions import IsAuthenticated
-from rest_auth.registration.views import RegisterView
-from rest_framework.response import Response
-from rest_framework import status
+from users.models import UserProfile
 
-from .serializers import ChoreListSerializer
+from .serializers import ChoreListSerializer,ChoreUpdateSerializer
 from ..models import Chore
 
 class ChoreListView(generics.ListAPIView):
@@ -18,9 +15,9 @@ class ChoreListView(generics.ListAPIView):
 class ChoreListUserView(generics.ListAPIView):
     serializer_class = ChoreListSerializer
     def get_queryset(self):
-        family = self.kwargs['family']
         user_profile = self.kwargs['user_profile']
-        return Chore.objects.filter(family=family,participants=user_profile)
+        family = UserProfile.objects.get(pk= user_profile).family.id
+        return Chore.objects.filter(family=family,participants__in=user_profile)
 
 class ChoreAvailableListView(generics.ListAPIView):
     serializer_class = ChoreListSerializer
@@ -30,7 +27,7 @@ class ChoreAvailableListView(generics.ListAPIView):
 
 class ChoreUpdateView(generics.GenericAPIView, mixins.UpdateModelMixin):
     queryset = Chore.objects.all()
-    serializer_class = ChoreListSerializer
+    serializer_class = ChoreUpdateSerializer
 
     def put(self, request, *args, **kwargs):
         return self.partial_update(request, *args, **kwargs)
