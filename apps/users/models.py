@@ -10,6 +10,7 @@ class UserProfile(models.Model):
     pro_pic = models.ImageField(blank=True)
     family = models.ForeignKey(Family, on_delete=models.CASCADE, blank=True, null=True,related_name="users")
     budget_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    chore_points = models.IntegerField()
 
     DAILY ="Day"
     WEEKLY= 'Week'

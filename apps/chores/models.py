@@ -2,7 +2,6 @@ from django.db import models
 from users.models import UserProfile
 from common.models import Pet,Family
 
-
 class Chore(models.Model):
     family = models.ForeignKey(Family)
     created_by = models.ForeignKey(UserProfile)
@@ -45,6 +44,8 @@ class ChoreReward(models.Model):
     rewarded_to = models.ForeignKey(UserProfile, related_name="rewarded_to")
     num_points = models.IntegerField()
     reward = models.CharField(max_length=100)
+    is_redeemed = models.BooleanField(default=False)
+    
 
 
 #parents will set chore point thresholds with a reward at each

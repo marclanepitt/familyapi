@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from knox.auth import TokenAuthentication
-from rest_framework import generics
+from rest_framework import generics,mixins
 from rest_framework.permissions import IsAuthenticated
 from rest_auth.registration.views import RegisterView
 from rest_framework.response import Response
@@ -62,3 +62,11 @@ class UserProfileLoginView(generics.GenericAPIView):
         self.serializer = self.get_serializer(data=self.request.data)
         self.serializer.is_valid(raise_exception=True)
         return self.get_response()
+
+class UserProfileUpdateView(generics.GenericAPIView,mixins.UpdateModelMixin):
+    serializer_class = serializers.UserProfileSerializer
+    queryset = UserProfile.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+    def put(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
