@@ -1,7 +1,7 @@
 from rest_framework import generics
-from .serializers import PetSerializer,FamilySerializer,PostSerializer, PetCreateSerializer
+from .serializers import PetSerializer,FamilySerializer, PetCreateSerializer
 from django.shortcuts import get_object_or_404
-from common.models import Family,Post, Pet
+from common.models import Family, Pet
 
 
 class PetCreateView(generics.CreateAPIView):
@@ -20,9 +20,3 @@ class FamilyListView(generics.ListAPIView):
 
     def get_queryset(self):
         return Family.objects.filter(id=self.kwargs['family'])
-
-class PostListView(generics.ListAPIView):
-    serializer_class = PostSerializer
-
-    def get_queryset(self):
-        return Post.objects.filter(family=self.kwargs['family']).order_by('-date')

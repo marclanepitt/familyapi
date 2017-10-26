@@ -37,13 +37,3 @@ class Group(models.Model):
     families = models.ManyToManyField(Family)
     def __str__(self):
         return self.name
-
-class Post(models.Model):
-    family = models.ForeignKey(Family)
-    date = models.DateTimeField(auto_now_add=True)
-
-# class Notification(models.Model):
-#     notify = models.ManyToManyField(UserProfile)
-#     app = models.CharField(max_length=20)
-#     message = models.CharField(max_length=100)
-#     link = models.CharField(max_length=40)

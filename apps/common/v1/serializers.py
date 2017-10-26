@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from common.models import Family,Pet, Post
+from common.models import Family,Pet
 from finances.models import Charge
 from finances.v1.serializers import ChargeSerializer
 from users.models import UserProfile
@@ -30,9 +30,3 @@ class PetCreateSerializer(serializers.ModelSerializer):
         validated_data['family'] = family
         pet = Pet.objects.create(**validated_data)
         return pet
-
-class PostSerializer(serializers.ModelSerializer):
-    charge = ChargeSerializer()
-    class Meta:
-        model = Post
-        fields = ("charge","date","family")

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from ..models import Charge
 from datetime import datetime
-from common.models import Post,Family
+from common.models import Family
 from users.models import UserProfile
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -23,8 +23,6 @@ class ChargeCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         family = Family.objects.get(pk=self.context['family'])
         validated_data['family'] = family
-        post = Post.objects.create(date=datetime.now(), family =family)
-        validated_data["post"] = post
         charge = Charge.objects.create(**validated_data)
         return charge
 

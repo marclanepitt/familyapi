@@ -85,6 +85,7 @@ INSTALLED_APPS = [
     'chores.apps.ChoresConfig',
     'events.apps.EventsConfig',
     'finances.apps.FinancesConfig',
+    'notifications.apps.NotificationsConfig',
 
 ]
 

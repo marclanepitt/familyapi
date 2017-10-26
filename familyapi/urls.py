@@ -25,6 +25,7 @@ v1_urls = [
     url(r'^finances/', include('finances.v1.urls', namespace='finances')),
     url(r'^chores/', include('chores.v1.urls', namespace='chores')),
     url(r'^family/', include('common.v1.urls', namespace='family')),
+    url(r'^notifications/',include('notifications.v1.urls',namespace='notifications')),
     url(r'^', include('common.v1.urls')),
 ]
 
